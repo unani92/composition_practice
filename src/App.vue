@@ -1,22 +1,36 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+      <div class="average">
+        <Todo :avg="countAvg"/>
+        평균: {{ countAvg }}
+      </div>
+      <div>
+        <input @change="inputNum" :value="num" type="text">
+        <div>
+          <button @click="submit" class="btn">추가하기</button>
+          <button @click="clear">클리어</button>
+        </div>
+      </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import useCount from "@/components/useCount";
+import Todo from "@/components/Todo";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Todo
+  },
+  setup() {
+    
+    return { ...useCount() }
   }
 }
 </script>
 
-<style>
+<style scoped lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
